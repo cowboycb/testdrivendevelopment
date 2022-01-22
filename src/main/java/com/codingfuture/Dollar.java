@@ -2,28 +2,24 @@ package com.codingfuture;
 
 import java.util.Objects;
 
-public class Dollar {
+public class Dollar extends Money{
 
-    private int amount;
-
-    public Dollar(int amount) {
+    public Dollar(int amount, String currency) {
         this.amount = amount;
+        this.currency = currency;
     }
 
-    public Dollar times(int multiplier) {
-        return new Dollar(amount*multiplier);
+    public Money times(int multiplier) {
+        return Money.dollar(amount*multiplier);
+    }
+
+    @Override
+    public String currency() {
+        return currency;
     }
 
     public int amount() {
         return amount;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Dollar dollar = (Dollar) o;
-        return amount == dollar.amount;
     }
 
     @Override
