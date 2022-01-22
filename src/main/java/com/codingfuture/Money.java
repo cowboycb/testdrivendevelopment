@@ -1,10 +1,10 @@
 package com.codingfuture;
 
-public abstract class Money {
+public class Money {
     protected int amount;
     protected String currency;
 
-    protected Money(int amount, String currency) {
+    public Money(int amount, String currency) {
         this.amount = amount;
         this.currency = currency;
     }
@@ -17,15 +17,23 @@ public abstract class Money {
         return new Franc(amount, "CHF");
     }
 
-    public abstract Money times(int multiplier);
+    public Money times(int multiplier){
+        return null;
+    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null) return false;
         Money money = (Money) o;
-        return amount == money.amount;
+        return amount == money.amount && currency().equals(money.currency());
     }
 
-    public abstract String currency();
+    public String currency(){
+        return currency;
+    }
+
+    public String toString() {
+        return amount + " " + currency;
+    }
 }
