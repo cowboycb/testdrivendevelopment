@@ -1,7 +1,7 @@
 package com.codingfuture;
 
 public class Bank {
-    public Money reduced(Expression sum, String usd) {
-        return Money.dollar(10);
+    public Money reduced(Expression source, String to) {
+        return source.reduce(to);
     }
 }
