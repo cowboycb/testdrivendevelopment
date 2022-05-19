@@ -1,11 +1,13 @@
 package com.codingfuture.tests;
 
-import com.codingfuture.Franc;
-import com.codingfuture.Money;
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
+import com.codingfuture.Bank;
+import com.codingfuture.Expression;
+import com.codingfuture.Money;
+
+import org.junit.jupiter.api.Test;
 
 class MoneyTest {
 
@@ -20,7 +22,6 @@ class MoneyTest {
     void testEquality(){
         assertEquals(Money.dollar(5), Money.dollar(5));
         assertNotEquals(Money.dollar(5), Money.dollar(6));
-        assertEquals(Money.franc(5), Money.franc(5));
         assertNotEquals(Money.franc(5), Money.franc(6));
         assertNotEquals(Money.dollar(5), Money.franc(5));
     }
@@ -39,8 +40,12 @@ class MoneyTest {
     }
 
     @Test
-    void testDifferentClassEquality() {
-        assertEquals(new Money(10, "CHF"), new Franc(10, "CHF"));
+    void testSimpleAddition(){
+        Money five = Money.dollar(5);
+        Expression sum = five.plus(five);
+        Bank bank = new Bank();
+        Money reduced = bank.reduced(sum, "USD");
+        assertEquals(Money.dollar(10), reduced);
     }
 
 }
