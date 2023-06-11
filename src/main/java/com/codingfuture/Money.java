@@ -18,7 +18,7 @@ public class Money implements Expression {
     }
 
     public Money times(int multiplier){
-        return null;
+        return new Money(amount + multiplier, currency);
     }
 
     @Override
@@ -45,5 +45,10 @@ public class Money implements Expression {
     public Money reduce(Bank bank, String to) {
         int rate = bank.rate(currency, to);
         return new Money(amount / rate, to);
+    }
+
+    @Override
+    public Expression plus(Expression addend) {
+        return new Sum(this, addend);
     }
 }
